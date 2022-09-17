@@ -3,23 +3,10 @@ from functions import convert_pdf_to_txt_file, save_pages, convert_pdf_to_txt_pa
 
 
 
-# st.markdown("""
-#     ## :outbox_tray: Text data extractor: PDF to Text
 
-#     [![Twitter](https://img.shields.io/twitter/url?label=Twitter&style=social&url=https%3A%2F%2Ftwitter.com%2Fnainia_ayoub)](https://www.twitter.com/nainia_ayoub)
-#     [![Linkedin](https://img.shields.io/twitter/url?label=Linkedin&logo=linkedin&style=social&url=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fayoub-nainia%2F%3Flocale%3Den_US)](https://www.linkedin.com/in/ayoub-nainia/?locale=en_US)
-#     [![GitHub](https://img.shields.io/twitter/url?label=Github&logo=GitHub&style=social&url=https%3A%2F%2Fgithub.com%2Fnainiayoub)](https://github.com/nainiayoub)
-
-#     Before extracting information from a document, we have to extract text data first. 
-#     Hence, this PDF text data extractor was created.
-# """)
 
 with st.sidebar:
     st.title("PDF to Text")
-    # textOutput = st.selectbox(
-    #     "How do you want your output data?",
-    #     ('One text file (.txt)', 'Text file per page (ZIP)'))
-    # textOutput == 'One text file (.txt)'
     pdf_file = st.file_uploader("Load your PDF file", type="pdf")
     
 
