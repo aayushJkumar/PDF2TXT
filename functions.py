@@ -10,6 +10,7 @@ from io import StringIO
 import base64
 import tempfile
 from pathlib import Path
+from PyPDF2 import PdfFileReader, PdfFileWriter
 
 
 @st.cache
