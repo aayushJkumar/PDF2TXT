@@ -1,2 +1,6 @@
 streamlit==1.7.0
 pdfminer==20191125
+ocrmypdf
+PyPDF2
+pyngrok
+streamlit_webrtc==0.22.1
