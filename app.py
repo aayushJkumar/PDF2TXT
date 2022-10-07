@@ -1,7 +1,8 @@
 import streamlit as st
+import os
 import numpy as np
 import base64
-from functions import convert_pdf_to_txt_file, save_pages, convert_pdf_to_txt_pages, displayPDF
+from functions import convertPdfToTxtFile, save_pages, convert_pdf_to_txt_pages, displayPDF, OcrScannedPdf
 from pathlib import Path
 import tempfile
 from PyPDF2 import PdfFileReader, PdfFileWriter
@@ -26,12 +27,20 @@ if pdf_file and (int(number1) and int(number2)):
     with open('{0}_subset.pdf'.format(file_base_name), 'wb') as f:
       pdfWriter.write(f)
       f.close()
-    path=open('{0}_subset.pdf'.format(file_base_name), 'rb')
-    st.write(displayPDF('{0}_subset.pdf'.format(file_base_name)))
-    text_data_f, nbPages = convert_pdf_to_txt_file(path)
+    # path=open('{0}_subset.pdf'.format(file_base_name), 'rb')
+    OcrScannedPdf('{0}_subset.pdf'.format(file_base_name),'{0}_subset_scanned.pdf'.format(file_base_name))
+    path=open('{0}_subset_scanned.pdf'.format(file_base_name), 'rb')
+    text_data_f, nbPages = convertPdfToTxtFile(path)
     totalPages = str(nbPages)+" pages in total."
+    # st.info(totalPages)
+    st.markdown("## Overview Of The PDF File")
     st.info(totalPages)
-    st.download_button("Download txt file", text_data_f)
+    st.write(displayPDF('{0}_subset.pdf'.format(file_base_name)))
+    # text_data_f, nbPages = convert_pdf_to_txt_file(path)
+    #os.remove('C:/Users/Aayush/Workspace/Internship_ISB_IIDS/pdf-text-data-extractor-main/pdf2txt/'+'{0}_subset.pdf'.format(file_base_name))#2_Changing_cost_of_crop_production_Srivastava_et_al_subset.pdf
+    # totalPages = str(nbPages)+" pages in total."
+    # st.info(totalPages)
+    st.download_button("Download", text_data_f, file_name='{0}.txt'.format(file_base_name))
 
    
 # new_pdf_file = pdf_file.replace('.pdf', '')+"_subset.pdf" 

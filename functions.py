@@ -11,6 +11,7 @@ import base64
 import tempfile
 from pathlib import Path
 from PyPDF2 import PdfFileReader, PdfFileWriter
+import ocrmypdf
 
 
 @st.cache
@@ -44,7 +45,7 @@ def convert_pdf_to_txt_pages(path):
 
 
 @st.cache
-def convert_pdf_to_txt_file(path):
+def convertPdfToTxtFile(path):
     texts = []
     rsrcmgr = PDFResourceManager()
     retstr = StringIO()
@@ -95,7 +96,7 @@ def save_pages(pages):
 #     pdf_display = F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf"></iframe>'
 #     # Displaying File
 #     st.markdown(pdf_display, unsafe_allow_html=True)
-
+@st.cache(suppress_st_warning=True)
 def displayPDF(file_path:str):
     # Opening file from file path
     with open(file_path, "rb") as f:
@@ -106,3 +107,8 @@ def displayPDF(file_path:str):
 
     # Displaying File
     st.markdown(pdf_display, unsafe_allow_html=True)
+
+@st.cache
+def OcrScannedPdf(file_path, save_path):
+    ocrmypdf.ocr(file_path, save_path, skip_text=True)
+    # print('File converted successfully!')
