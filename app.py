@@ -1,3 +1,5 @@
+import sys
+sys.path.append("https://github.com/aayushJkumar/PDF2TXT")
 import streamlit as st
 import os
 import numpy as np
